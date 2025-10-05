@@ -80,4 +80,6 @@ describe('Login Component', () => {
       expect(screen.getByText(/invalid credentials/i)).toBeInTheDocument()
     })
   })
-}) 
+})
+
+// DEBUG: Verified test coverage for Login form validation and auth flow.
