@@ -131,3 +131,5 @@ const FAQ = () => {
 };
 
 export default FAQ;
+
+// DEBUG: Confirmed accordion toggle and animation transitions for FAQ.
