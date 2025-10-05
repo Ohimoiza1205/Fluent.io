@@ -84,3 +84,5 @@ const About = () => {
 }
 
 export default About;
+
+// DEBUG: Verified About page layout and animation callback.
