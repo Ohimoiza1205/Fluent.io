@@ -282,3 +282,5 @@ const Login = () => {
 };
 
 export default Login;
+
+// DEBUG: Checked Login animation flow and floating elements rendering properly.
