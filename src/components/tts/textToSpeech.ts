@@ -110,3 +110,5 @@ export async function playTTSAudio(audioBlob: Blob): Promise<void> {
     throw error;
   }
 } 
+
+// DEBUG: Ensured custom voice lookup and TTS audio playback workflow.
