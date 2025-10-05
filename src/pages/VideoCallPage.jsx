@@ -180,10 +180,26 @@ const VideoCallPage = () => {
     });
 
     // Listen for remote transcription messages
-    socket.on("transcription-message", ({ transcript, translation }) => {
+    //socket.on("transcription-message", ({ transcript, translation }) => {
+      //setRemoteTranscript(transcript);
+      //setRemoteTranslation(translation);
+    //});
+        // Listen for remote transcription messages
+    socket.on("transcription-message", async ({ transcript, translation }) => {
       setRemoteTranscript(transcript);
       setRemoteTranslation(translation);
+
+      // 🪄 Automatically play the translated voice (no need to click "Play")
+      try {
+        const ttsLang =
+          LANGUAGES.find((l) => l.code === translateLang)?.ttsCode || "es-ES";
+        console.log("🎧 Auto-playing translated audio...");
+        await speak(translation, ttsLang);
+      } catch (err) {
+        console.error("❌ Auto-translation playback failed:", err);
+      }
     });
+
 
     // Listen for remote mic status
     socket.on("mic-status", ({ micOn, senderId }) => {
@@ -241,6 +257,20 @@ const VideoCallPage = () => {
         }
       };
 
+      //pc.ontrack = (event) => {
+        //console.log("📺 Received remote track");
+        //const remoteStream = event.streams[0];
+        //const remoteVideo = remoteVideoRef.current;
+
+        //if (remoteVideo && remoteStream) {
+          //remoteVideo.srcObject = remoteStream;
+          //remoteVideo.load();
+          //remoteVideo.play().catch((err) => {
+            //console.warn("⚠️ Remote video play() error:", err);
+          //});
+          //console.log("✅ Set remote video stream");
+        //}
+      //};
       pc.ontrack = (event) => {
         console.log("📺 Received remote track");
         const remoteStream = event.streams[0];
@@ -252,9 +282,16 @@ const VideoCallPage = () => {
           remoteVideo.play().catch((err) => {
             console.warn("⚠️ Remote video play() error:", err);
           });
-          console.log("✅ Set remote video stream");
+
+          // 🔇 Mute remote audio so you only hear translated voice
+          remoteStream.getAudioTracks().forEach((track) => {
+            track.enabled = false;
+          });
+
+          console.log("✅ Set remote video stream (muted raw audio)");
         }
       };
+
 
       pc.onconnectionstatechange = () => {
         console.log("🔄 Connection state:", pc.connectionState);
