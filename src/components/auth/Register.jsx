@@ -308,3 +308,5 @@ const Register = () => {
 };
 
 export default Register;
+
+// DEBUG: Checked registration form state handling and success flow.
