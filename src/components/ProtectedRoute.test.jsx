@@ -55,3 +55,5 @@ describe('ProtectedRoute Component', () => {
     expect(screen.queryByText(/protected content/i)).not.toBeInTheDocument()
   })
 }) 
+
+// Testing route
