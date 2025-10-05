@@ -78,3 +78,5 @@ serve(async (req: Request) => {
     });
   }
 });
+
+// set access control type
