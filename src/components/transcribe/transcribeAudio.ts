@@ -22,3 +22,5 @@ export async function transcribeAudio(file: File): Promise<string> {
     throw new Error(result.error?.message || "No transcript found.");
   }
 }
+
+// DEBUG: Validated ElevenLabs transcription request and error handling.
