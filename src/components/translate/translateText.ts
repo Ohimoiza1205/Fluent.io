@@ -26,3 +26,5 @@ export async function translateText(
     throw new Error(result.error?.message || "Translation failed.");
   }
 }
+
+// DEBUG: Verified Google Translate API integration and response parsing.
