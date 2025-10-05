@@ -73,3 +73,5 @@ describe('AuthContext', () => {
     })
   })
 }) 
+
+// testing context pages
