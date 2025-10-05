@@ -178,3 +178,5 @@ const HowToUseSection = () => {
 };
 
 export default HowToUseSection;
+
+// edited detailing of use case
